@@ -20,7 +20,7 @@ wheels/
 .installed.cfg
 *.egg
 
-# 虚拟环境
+# Virtual environment
 .venv/
 venv/
 ENV/
@@ -35,7 +35,7 @@ env/
 # macOS
 .DS_Store
 
-# 项目特定
+# Project Specific
 data/input/*
 data/output/*
 data/temp/*

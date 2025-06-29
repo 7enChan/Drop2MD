@@ -2,6 +2,10 @@
 
 A modern, minimalist web interface for file conversion built on Microsoft's MarkItDown.
 
+## 🤖 AI-Generated Project
+
+**This project was bootstrapped and developed entirely by an AI **
+
 ## ✨ Features
 
 - 🚀 Convert multiple file formats to Markdown
