@@ -189,6 +189,8 @@ def main():
         <div class="footer">
             Powered by <a href="https://streamlit.io" target="_blank">Streamlit</a>
             & <a href="https://github.com/microsoft/markitdown" target="_blank">MarkItDown</a>
+            &nbsp;|&nbsp;
+            <a href="https://github.com/7enChan/Drop2MD" target="_blank">GitHub</a>
         </div>
         """,
         unsafe_allow_html=True

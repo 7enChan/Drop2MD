@@ -23,7 +23,7 @@
 
 - 📄 **文档**: PDF, Word, PowerPoint, Excel
 - 🖼️ **图片**: JPG, PNG, GIF, BMP, TIFF, WebP
-- 🎵 **音频**: MP3, WAV, M4A, AAC
+- 🎵 **音频**: MP3, WAV, M4A, AAC（需安装 FFmpeg）
 - 🌐 **网页**: HTML, XML, XHTML
 - 📊 **数据**: JSON, CSV, YAML
 - 📚 **压缩/电子书**: ZIP, EPUB
@@ -57,6 +57,8 @@ pip install -e ".[dev]"          # 开发工具（可选）
 ```
 
 环境就绪后，继续下一步。
+
++> **注意**：若需转换音频文件，请先安装 [FFmpeg](https://ffmpeg.org/)，并确保其可执行文件已加入 `PATH`（macOS 可使用 `brew install ffmpeg`，Ubuntu/Debian 可使用 `sudo apt-get install ffmpeg`）。
 
 ## 🚀 快速开始
 

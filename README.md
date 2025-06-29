@@ -24,7 +24,7 @@ A modern, minimalist web interface for file conversion built on Microsoft's Mark
 
 - 📄 **Documents**: PDF, Word, PowerPoint, Excel
 - 🖼️ **Images**: JPG, PNG, GIF, BMP, TIFF, WebP
-- 🎵 **Audio**: MP3, WAV, M4A, AAC
+- 🎵 **Audio**: MP3, WAV, M4A, AAC *(requires FFmpeg)*
 - 🌐 **Web**: HTML, XML, XHTML
 - 📊 **Data**: JSON, CSV, YAML
 - 📚 **Archives**: ZIP, EPUB
@@ -56,6 +56,8 @@ source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -e .                 # runtime only
 pip install -e ".[dev]"          # dev tools (optional)
 ```
+
++> **Note**: If you plan to convert audio files, make sure [FFmpeg](https://ffmpeg.org/) is installed and available in your `PATH` (e.g., `brew install ffmpeg` on macOS or `sudo apt-get install ffmpeg` on Debian/Ubuntu).
 
 Once the environment is ready you can launch the app as described below.
 
