@@ -153,6 +153,11 @@ st.markdown("""
     .stFileUploader > div {
         width: 100% !important;
     }
+    
+    /* 隐藏标题上的锚点链接图标 */
+    h1 a.anchor-link {
+        display: none !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
