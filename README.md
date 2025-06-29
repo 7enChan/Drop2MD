@@ -1,10 +1,16 @@
+<p align="right">
+  <a href="README.zh-CN.md">简体中文 🇨🇳</a> | English
+</p>
+
 # Drop2MD
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?logo=streamlit)](https://drop2md.streamlit.app/)
 
 A modern, minimalist web interface for file conversion built on Microsoft's MarkItDown.
 
 ## 🤖 AI-Generated Project
 
-**This project was bootstrapped and developed entirely by an AI **
+**This project was bootstrapped and developed entirely by an AI**
 
 ## ✨ Features
 
