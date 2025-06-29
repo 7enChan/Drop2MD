@@ -30,28 +30,6 @@
 
 ---
 
-### Option 2: Railway Deployment
-
-**Advantages:** Custom domain support, more configuration options
-
-1. **Install Railway CLI**
-   ```bash
-   npm install -g @railway/cli
-   ```
-
-2. **Deploy**
-   ```bash
-   railway login
-   railway init
-   railway up
-   ```
-
-3. **Configure Environment Variables** (Optional)
-   - `PORT=8501`
-   - `STREAMLIT_SERVER_HEADLESS=true`
-
----
-
 ### Option 3: Docker Deployment
 
 **Advantages:** Can be deployed to any Docker-compatible platform
@@ -184,7 +162,7 @@ STREAMLIT_SERVER_ADDRESS=0.0.0.0
 ## 💡 Recommended Solutions
 
 **Beginners:** Streamlit Cloud (free, simple)
-**Advanced Users:** Railway or Docker
+**Advanced Users:** Docker
 **Enterprise:** VPS + Docker + Reverse Proxy
 
 Choose the deployment solution that best fits your needs! 

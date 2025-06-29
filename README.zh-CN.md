@@ -123,7 +123,6 @@ Drop2MD/
 详见 [DEPLOY.md](DEPLOY.md)，包含：
 
 - 🆓 Streamlit Cloud（个人免费）
-- 🚀 Railway（自定义域名）
 - 🐳 Docker（几乎可部署至任何平台）
 - 🖥️ VPS（企业级完全控制）
 
