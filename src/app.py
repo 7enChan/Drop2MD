@@ -1,6 +1,6 @@
 """
-MarkItDown WebUI - 极简版
-简洁、高效的文件转换工具
+MarkItDown WebUI
+A simple, efficient file conversion tool
 """
 
 import streamlit as st
@@ -12,30 +12,30 @@ from markitdown import MarkItDown
 from utils import get_file_info, format_file_size
 from config import APP_CONFIG
 
-# 配置页面
+# Page configuration
 st.set_page_config(
-    page_title="MarkItDown 转换器",
+    page_title="MarkItDown Converter",
     page_icon="📝",
     layout="centered",
     initial_sidebar_state="collapsed"
 )
 
-# 极简CSS样式
+# Minimalist CSS styles
 st.markdown("""
 <style>
-    /* 隐藏默认的菜单和页脚 */
+    /* Hide default menu and footer */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
-    /* 简化主容器 */
+    /* Simplify main container */
     .main .block-container {
         padding-top: 2rem;
         padding-bottom: 2rem;
         max-width: 800px;
     }
     
-    /* 标题样式 */
+    /* Title styles */
     .main-title {
         text-align: center;
         font-size: 2.5rem;
@@ -54,7 +54,7 @@ st.markdown("""
     
     
     
-    /* 文件信息卡片 */
+    /* File info card */
     .file-info {
         background: white;
         border: 1px solid #e0e0e0;
@@ -64,7 +64,7 @@ st.markdown("""
         box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
     
-    /* 按钮样式 */
+    /* Button styles */
     .stButton > button {
         width: 100%;
         height: 3rem;
@@ -80,7 +80,7 @@ st.markdown("""
         box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
     }
     
-    /* 结果区域 */
+    /* Result area */
     .result-container {
         margin-top: 2rem;
         padding: 2rem;
@@ -90,7 +90,7 @@ st.markdown("""
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
     
-    /* 统计信息 */
+    /* Statistics */
     .stats {
         display: flex;
         justify-content: space-around;
@@ -116,16 +116,16 @@ st.markdown("""
         margin-top: 0.2rem;
     }
     
-    /* 隐藏 Streamlit 的一些默认元素 */
+    /* Hide some Streamlit default elements */
     .stDeployButton {display: none;}
     .stDecoration {display: none;}
     
-    /* 隐藏文件上传组件内的格式提示 */
+    /* Hide format hints in file uploader */
     [data-testid="stFileUploader"] small {
         display: none !important;
     }
     
-    /* 调整文件上传组件宽度 */
+    /* Adjust file uploader width */
     .stFileUploader {
         width: 100% !important;
     }
@@ -137,61 +137,61 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def main():
-    # 简洁的标题
+    # Simple title
     st.markdown('<h1 class="main-title">📝 MarkItDown</h1>', unsafe_allow_html=True)
-    st.markdown('<p class="subtitle">将任何文件转换为 Markdown 格式</p>', unsafe_allow_html=True)
+    st.markdown('<p class="subtitle">Convert any file to Markdown format</p>', unsafe_allow_html=True)
     
-    # 文件上传区域
+    # File upload area
     col1, col2, col3 = st.columns([0.5, 4, 0.5])
     
     with col2:
         uploaded_file = st.file_uploader(
-            "选择文件",
+            "Choose file",
             type=APP_CONFIG["supported_extensions"],
             label_visibility="collapsed"
         )
         
         if uploaded_file is None:
-            st.markdown("**支持格式：** PDF、EPubs、PPT、Word、Excel、JPG、PNG、CSV、JSON 等")
+            st.markdown("**Supported formats:** PDF, EPubs, PPT, Word, Excel, JPG, PNG, CSV, JSON, etc.")
         
-        # 文件信息和转换
+        # File info and conversion
         if uploaded_file is not None:
             show_file_conversion(uploaded_file)
 
 def show_file_conversion(uploaded_file):
-    """显示文件信息和转换功能"""
+    """Display file information and conversion functionality"""
     
-    # 获取文件信息
+    # Get file information
     file_info = get_file_info(uploaded_file)
     
-    # 文件信息卡片
+    # File info card
     st.markdown(
         f'''
         <div class="file-info">
             <h4>📄 {file_info["name"]}</h4>
-            <p><strong>大小：</strong> {format_file_size(file_info["size"])}</p>
-            <p><strong>类型：</strong> {file_info["type"]}</p>
+            <p><strong>Size:</strong> {format_file_size(file_info["size"])}</p>
+            <p><strong>Type:</strong> {file_info["type"]}</p>
         </div>
         ''',
         unsafe_allow_html=True
     )
     
-    # 转换按钮
-    if st.button("🚀 开始转换", type="primary"):
+    # Convert button
+    if st.button("🚀 Start Conversion", type="primary"):
         convert_file(uploaded_file)
 
 def convert_file(uploaded_file):
-    """转换文件"""
+    """Convert file"""
     
-    # 进度指示
+    # Progress indicator
     progress_bar = st.progress(0)
     status_text = st.empty()
     
     try:
         start_time = time.time()
         
-        # 步骤1: 保存临时文件
-        status_text.info("💾 正在处理文件...")
+        # Step 1: Save temporary file
+        status_text.info("💾 Processing file...")
         progress_bar.progress(25)
         
         with tempfile.NamedTemporaryFile(
@@ -201,36 +201,36 @@ def convert_file(uploaded_file):
             tmp_file.write(uploaded_file.getvalue())
             tmp_path = tmp_file.name
         
-        # 步骤2: 执行转换
-        status_text.info("⚡ 正在转换...")
+        # Step 2: Execute conversion
+        status_text.info("⚡ Converting...")
         progress_bar.progress(75)
         
         md = MarkItDown()
         result = md.convert(tmp_path)
         
-        # 步骤3: 完成
+        # Step 3: Complete
         progress_bar.progress(100)
         conversion_time = time.time() - start_time
         
-        # 清理进度指示
+        # Clear progress indicators
         progress_bar.empty()
         status_text.empty()
         
-        # 显示结果
+        # Show results
         show_conversion_result(result, uploaded_file.name, conversion_time)
         
-        # 清理临时文件
+        # Clean up temporary file
         os.unlink(tmp_path)
         
     except Exception as e:
         progress_bar.empty()
         status_text.empty()
-        st.error(f"转换失败：{str(e)}")
+        st.error(f"Conversion failed: {str(e)}")
 
 def show_conversion_result(result, filename, conversion_time):
-    """显示转换结果"""
+    """Display conversion results"""
     
-    # 简单统计
+    # Simple statistics
     word_count = len(result.text_content.split())
     char_count = len(result.text_content)
     
@@ -239,25 +239,25 @@ def show_conversion_result(result, filename, conversion_time):
         <div class="stats">
             <div class="stat-item">
                 <div class="stat-value">{char_count:,}</div>
-                <div class="stat-label">字符数</div>
+                <div class="stat-label">Characters</div>
             </div>
             <div class="stat-item">
                 <div class="stat-value">{word_count:,}</div>
-                <div class="stat-label">单词数</div>
+                <div class="stat-label">Words</div>
             </div>
             <div class="stat-item">
                 <div class="stat-value">{conversion_time:.1f}s</div>
-                <div class="stat-label">转换时间</div>
+                <div class="stat-label">Conversion Time</div>
             </div>
         </div>
         ''',
         unsafe_allow_html=True
     )
     
-    # 下载按钮
+    # Download button
     output_filename = f"{Path(filename).stem}.md"
     st.download_button(
-        label="📥 下载 Markdown 文件",
+        label="📥 Download Markdown File",
         data=result.text_content,
         file_name=output_filename,
         mime="text/markdown",

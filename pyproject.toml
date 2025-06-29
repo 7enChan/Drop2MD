@@ -1,7 +1,7 @@
 [project]
 name = "markitdown-webui"
 version = "1.0.0"
-description = "A modern WebUI for MarkItDown file conversion"
+description = "A modern, minimalist web interface for file conversion built on Microsoft's MarkItDown"
 authors = [
     {name = "Developer", email = "dev@example.com"}
 ]

@@ -1,105 +1,105 @@
-# MarkItDown WebUI 部署指南
+# MarkItDown WebUI Deployment Guide
 
-## 🚀 快速部署选项
+## 🚀 Quick Deployment Options
 
-### 方案一：Streamlit Cloud（推荐 - 免费）
+### Option 1: Streamlit Cloud (Recommended - Free)
 
-**优势：** 免费、简单、自动更新
+**Advantages:** Free, simple, auto-updates
 
-1. **准备代码**
+1. **Prepare Code**
    ```bash
-   # 创建 requirements.txt
+   # Create requirements.txt
    echo "streamlit>=1.32.0
    markitdown[all]>=0.1.2" > requirements.txt
    
-   # 推送到 GitHub
+   # Push to GitHub
    git add .
    git commit -m "Ready for deployment"
    git push origin main
    ```
 
-2. **部署步骤**
-   - 访问 [share.streamlit.io](https://share.streamlit.io)
-   - 使用 GitHub 账号登录
-   - 选择仓库和分支
-   - 主文件路径：`src/app.py`
-   - 自动部署完成
+2. **Deployment Steps**
+   - Visit [share.streamlit.io](https://share.streamlit.io)
+   - Login with GitHub account
+   - Select repository and branch
+   - Main file path: `src/app.py`
+   - Auto-deployment complete
 
-3. **访问应用**
-   - 获得类似 `https://your-app.streamlit.app` 的链接
+3. **Access Application**
+   - Get a URL like `https://your-app.streamlit.app`
 
 ---
 
-### 方案二：Railway 部署
+### Option 2: Railway Deployment
 
-**优势：** 支持自定义域名、更多配置选项
+**Advantages:** Custom domain support, more configuration options
 
-1. **安装 Railway CLI**
+1. **Install Railway CLI**
    ```bash
    npm install -g @railway/cli
    ```
 
-2. **部署**
+2. **Deploy**
    ```bash
    railway login
    railway init
    railway up
    ```
 
-3. **配置环境变量**（可选）
+3. **Configure Environment Variables** (Optional)
    - `PORT=8501`
    - `STREAMLIT_SERVER_HEADLESS=true`
 
 ---
 
-### 方案三：Docker 部署
+### Option 3: Docker Deployment
 
-**优势：** 可部署到任何支持 Docker 的平台
+**Advantages:** Can be deployed to any Docker-compatible platform
 
-1. **本地构建和运行**
+1. **Local Build and Run**
    ```bash
-   # 构建镜像
+   # Build image
    docker build -t markitdown-webui .
    
-   # 运行容器
+   # Run container
    docker run -p 8501:8501 markitdown-webui
    ```
 
-2. **使用 Docker Compose**
+2. **Use Docker Compose**
    ```bash
    docker-compose up -d
    ```
 
-3. **部署到云平台**
+3. **Deploy to Cloud Platforms**
    - **Google Cloud Run**
    - **AWS ECS**
    - **Azure Container Instances**
 
 ---
 
-### 方案四：VPS 部署
+### Option 4: VPS Deployment
 
-**适用于：** 有云服务器的用户
+**Suitable for:** Users with cloud servers
 
-1. **服务器配置**
+1. **Server Setup**
    ```bash
-   # 克隆项目
+   # Clone project
    git clone <your-repo>
    cd markitdown-webui
    
-   # 安装 uv
+   # Install uv
    curl -LsSf https://astral.sh/uv/install.sh | sh
    source ~/.local/bin/env
    
-   # 设置项目
+   # Setup project
    uv venv .venv
    source .venv/bin/activate
    uv pip install -e .
    ```
 
-2. **使用 systemd 服务**
+2. **Use systemd Service**
    ```bash
-   # 创建服务文件
+   # Create service file
    sudo tee /etc/systemd/system/markitdown.service > /dev/null <<EOF
    [Unit]
    Description=MarkItDown WebUI
@@ -116,12 +116,12 @@
    WantedBy=multi-user.target
    EOF
    
-   # 启动服务
+   # Start service
    sudo systemctl enable markitdown
    sudo systemctl start markitdown
    ```
 
-3. **配置反向代理**（Nginx）
+3. **Configure Reverse Proxy** (Nginx)
    ```nginx
    server {
        listen 80;
@@ -140,20 +140,20 @@
 
 ---
 
-## 📋 部署清单
+## 📋 Deployment Checklist
 
-### 必需文件
-- ✅ `src/app.py` - 主应用
-- ✅ `src/config.py` - 配置文件
-- ✅ `src/utils.py` - 工具函数
-- ✅ `pyproject.toml` - 项目配置
+### Required Files
+- ✅ `src/app.py` - Main application
+- ✅ `src/config.py` - Configuration file
+- ✅ `src/utils.py` - Utility functions
+- ✅ `pyproject.toml` - Project configuration
 
-### 部署配置文件
-- ✅ `requirements.txt` - Streamlit Cloud 需要
-- ✅ `Dockerfile` - Docker 部署
-- ✅ `docker-compose.yml` - Docker Compose 部署
+### Deployment Configuration Files
+- ✅ `requirements.txt` - For Streamlit Cloud
+- ✅ `Dockerfile` - For Docker deployment
+- ✅ `docker-compose.yml` - For Docker Compose deployment
 
-### 环境变量
+### Environment Variables
 ```bash
 STREAMLIT_SERVER_HEADLESS=true
 STREAMLIT_SERVER_PORT=8501
@@ -162,29 +162,29 @@ STREAMLIT_SERVER_ADDRESS=0.0.0.0
 
 ---
 
-## 🔧 部署后配置
+## 🔧 Post-Deployment Configuration
 
-### 性能优化
-- 设置合适的文件大小限制
-- 配置缓存策略
-- 监控内存使用情况
+### Performance Optimization
+- Set appropriate file size limits
+- Configure caching strategies
+- Monitor memory usage
 
-### 安全考虑
-- 使用 HTTPS
-- 设置文件类型白名单
-- 配置速率限制
+### Security Considerations
+- Use HTTPS
+- Set file type whitelist
+- Configure rate limiting
 
-### 监控和维护
-- 设置日志记录
-- 配置健康检查
-- 定期更新依赖
+### Monitoring and Maintenance
+- Set up logging
+- Configure health checks
+- Regular dependency updates
 
 ---
 
-## 💡 推荐方案
+## 💡 Recommended Solutions
 
-**新手用户：** Streamlit Cloud（免费、简单）
-**进阶用户：** Railway 或 Docker
-**企业用户：** VPS + Docker + 反向代理
+**Beginners:** Streamlit Cloud (free, simple)
+**Advanced Users:** Railway or Docker
+**Enterprise:** VPS + Docker + Reverse Proxy
 
-选择最适合您需求的部署方案！ 
+Choose the deployment solution that best fits your needs! 

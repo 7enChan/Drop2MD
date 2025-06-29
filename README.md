@@ -1,60 +1,111 @@
 # MarkItDown WebUI
 
-现代化的文件转换 WebUI，基于 MarkItDown 构建。
+A modern, minimalist web interface for file conversion built on Microsoft's MarkItDown.
 
-## 功能特点
+## ✨ Features
 
-- 🚀 支持多种文件格式转换为 Markdown
-- 🎨 现代化的 Web 界面
-- ⚡ 基于 uv 的快速包管理
-- 🔒 隔离的虚拟环境，不污染系统
+- 🚀 Convert multiple file formats to Markdown
+- 🎨 Clean, minimalist web interface
+- ⚡ Fast package management with uv
+- 🔒 Isolated virtual environment, no system pollution
+- 📱 Responsive design with drag-and-drop support
 
-## 支持格式
+## 📄 Supported Formats
 
-- 📄 PDF、Word、PowerPoint、Excel
-- 🖼️ 图像文件（JPG、PNG 等）
-- 🎵 音频文件（MP3、WAV 等）
-- 🌐 HTML、XML、JSON、CSV
-- 📚 ZIP、EPUB 等
+- 📄 **Documents**: PDF, Word, PowerPoint, Excel
+- 🖼️ **Images**: JPG, PNG, GIF, BMP, TIFF, WebP
+- 🎵 **Audio**: MP3, WAV, M4A, AAC
+- 🌐 **Web**: HTML, XML, XHTML
+- 📊 **Data**: JSON, CSV, YAML
+- 📚 **Archives**: ZIP, EPUB
+- 📝 **Text**: TXT, RTF, Markdown
 
-## 快速开始
+## 🚀 Quick Start
 
 ```bash
-# 一键启动
+# One-click start
 ./run.sh
 
-# 或者手动启动
+# Or manual start
 source .venv/bin/activate
 streamlit run src/app.py
 ```
 
-## 开发
+## 🛠️ Development
 
 ```bash
-# 激活环境
+# Activate environment
 source .venv/bin/activate
 
-# 安装新依赖
+# Install new dependencies
 uv pip install package-name
 
-# 运行测试
+# Run tests
 pytest tests/
 
-# 代码格式化
+# Code formatting
 black src/
 ruff check src/
+
+# Deactivate when done
+deactivate
 ```
 
-## 项目结构
+## 📁 Project Structure
 
 ```
 markitdown-webui/
-├── .venv/              # 虚拟环境
-├── src/               # 源代码
-│   ├── app.py        # 主应用
-│   ├── config.py     # 配置
-│   └── utils.py      # 工具函数
-├── data/             # 数据目录
-├── tests/            # 测试
-└── docs/             # 文档
+├── .venv/              # Virtual environment
+├── src/               # Source code
+│   ├── app.py        # Main application
+│   ├── config.py     # Configuration
+│   └── utils.py      # Utility functions
+├── data/             # Data directory
+│   ├── input/        # Input files
+│   ├── output/       # Output files
+│   └── temp/         # Temporary files
+├── tests/            # Tests
+├── docs/             # Documentation
+├── Dockerfile        # Docker configuration
+├── docker-compose.yml # Docker Compose setup
+├── requirements.txt  # Dependencies for cloud deployment
+└── DEPLOY.md         # Deployment guide
 ```
+
+## 🎯 Technology Stack
+
+- **Backend**: Python 3.12+ with FastAPI-like architecture
+- **Frontend**: Streamlit for rapid UI development
+- **Package Manager**: uv for lightning-fast dependency management
+- **Core Engine**: Microsoft MarkItDown for file conversion
+- **Containerization**: Docker & Docker Compose ready
+
+## 🌐 Deployment
+
+See [DEPLOY.md](DEPLOY.md) for detailed deployment instructions including:
+
+- 🆓 **Streamlit Cloud** (Free, recommended for personal use)
+- 🚀 **Railway** (Easy deployment with custom domains)
+- 🐳 **Docker** (Flexible deployment anywhere)
+- 🖥️ **VPS** (Full control for enterprise use)
+
+## 📊 Usage Statistics
+
+- ⚡ **Conversion Speed**: Typically under 2 seconds
+- 📏 **File Size Limit**: Up to 200MB per file
+- 🔧 **Dependencies**: Minimal, well-maintained packages
+- 🎨 **UI/UX**: Minimalist design, zero configuration needed
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Microsoft MarkItDown](https://github.com/microsoft/markitdown) - The core conversion engine
+- [Streamlit](https://streamlit.io/) - For the amazing web framework
+- [uv](https://github.com/astral-sh/uv) - For blazing fast Python package management

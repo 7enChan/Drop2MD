@@ -1,4 +1,4 @@
-"""工具函数模块"""
+"""Utility functions module"""
 
 import os
 import json
@@ -8,18 +8,18 @@ from pathlib import Path
 from typing import Dict, Any, Optional
 from config import APP_CONFIG, get_file_type_display
 
-# 转换历史记录文件路径
+# Conversion history file path
 HISTORY_FILE = Path(APP_CONFIG["output_dir"]) / "conversion_history.json"
 
 def get_file_info(uploaded_file) -> Dict[str, Any]:
     """
-    获取上传文件的详细信息
+    Get detailed information about uploaded file
     
     Args:
-        uploaded_file: Streamlit 上传的文件对象
+        uploaded_file: Streamlit uploaded file object
         
     Returns:
-        包含文件信息的字典
+        Dictionary containing file information
     """
     file_extension = Path(uploaded_file.name).suffix.lstrip('.').lower()
     
@@ -33,13 +33,13 @@ def get_file_info(uploaded_file) -> Dict[str, Any]:
 
 def format_file_size(size_bytes: int) -> str:
     """
-    格式化文件大小显示
+    Format file size for display
     
     Args:
-        size_bytes: 文件大小（字节）
+        size_bytes: File size in bytes
         
     Returns:
-        格式化的文件大小字符串
+        Formatted file size string
     """
     if size_bytes == 0:
         return "0 B"
@@ -64,22 +64,22 @@ def save_conversion_history(
     conversion_time: float
 ) -> None:
     """
-    保存转换历史记录
+    Save conversion history record
     
     Args:
-        filename: 原文件名
-        file_size: 原文件大小
-        output_size: 输出文件大小
-        conversion_time: 转换耗时
+        filename: Original filename
+        file_size: Original file size
+        output_size: Output file size
+        conversion_time: Conversion duration
     """
     try:
-        # 确保历史文件目录存在
+        # Ensure history file directory exists
         HISTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
         
-        # 读取现有历史记录
+        # Load existing history records
         history = load_conversion_history()
         
-        # 添加新记录
+        # Add new record
         new_record = {
             "timestamp": datetime.now().isoformat(),
             "filename": filename,
@@ -92,40 +92,40 @@ def save_conversion_history(
         
         history.append(new_record)
         
-        # 保留最近的 100 条记录
+        # Keep only the latest 100 records
         if len(history) > 100:
             history = history[-100:]
         
-        # 保存到文件
+        # Save to file
         with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
             json.dump(history, f, ensure_ascii=False, indent=2)
             
     except Exception as e:
-        # 静默失败，不影响主要功能
-        print(f"保存转换历史失败: {e}")
+        # Silent failure, don't affect main functionality
+        print(f"Failed to save conversion history: {e}")
 
 def load_conversion_history() -> list:
     """
-    加载转换历史记录
+    Load conversion history records
     
     Returns:
-        历史记录列表
+        List of history records
     """
     try:
         if HISTORY_FILE.exists():
             with open(HISTORY_FILE, 'r', encoding='utf-8') as f:
                 return json.load(f)
     except Exception as e:
-        print(f"加载转换历史失败: {e}")
+        print(f"Failed to load conversion history: {e}")
     
     return []
 
 def get_conversion_stats() -> Dict[str, Any]:
     """
-    获取转换统计信息
+    Get conversion statistics
     
     Returns:
-        统计信息字典
+        Dictionary of statistics
     """
     history = load_conversion_history()
     
@@ -134,24 +134,24 @@ def get_conversion_stats() -> Dict[str, Any]:
             "total_conversions": 0,
             "total_files_processed": 0,
             "average_conversion_time": 0,
-            "most_common_format": "无",
+            "most_common_format": "None",
             "total_input_size": 0,
             "total_output_size": 0
         }
     
-    # 计算统计信息
+    # Calculate statistics
     total_conversions = len(history)
     total_input_size = sum(record.get("input_size", 0) for record in history)
     total_output_size = sum(record.get("output_size", 0) for record in history)
     avg_conversion_time = sum(record.get("conversion_time", 0) for record in history) / total_conversions
     
-    # 统计最常见的文件格式
+    # Count most common file formats
     format_counts = {}
     for record in history:
         ext = record.get("file_extension", "unknown")
         format_counts[ext] = format_counts.get(ext, 0) + 1
     
-    most_common_format = max(format_counts.items(), key=lambda x: x[1])[0] if format_counts else "无"
+    most_common_format = max(format_counts.items(), key=lambda x: x[1])[0] if format_counts else "None"
     
     return {
         "total_conversions": total_conversions,
@@ -165,13 +165,13 @@ def get_conversion_stats() -> Dict[str, Any]:
 
 def clean_temp_files(temp_dir: Optional[str] = None) -> int:
     """
-    清理临时文件
+    Clean temporary files
     
     Args:
-        temp_dir: 临时目录路径，默认使用配置中的目录
+        temp_dir: Temporary directory path, defaults to configured directory
         
     Returns:
-        清理的文件数量
+        Number of files cleaned
     """
     if temp_dir is None:
         temp_dir = APP_CONFIG["temp_dir"]
@@ -186,38 +186,38 @@ def clean_temp_files(temp_dir: Optional[str] = None) -> int:
     try:
         for file_path in temp_path.iterdir():
             if file_path.is_file():
-                # 删除超过 1 小时的临时文件
+                # Delete temporary files older than 1 hour
                 if current_time - file_path.stat().st_mtime > 3600:
                     file_path.unlink()
                     cleaned_count += 1
     except Exception as e:
-        print(f"清理临时文件时出错: {e}")
+        print(f"Error cleaning temporary files: {e}")
     
     return cleaned_count
 
 def validate_file_type(filename: str) -> bool:
     """
-    验证文件类型是否支持
+    Validate if file type is supported
     
     Args:
-        filename: 文件名
+        filename: Filename
         
     Returns:
-        是否支持该文件类型
+        Whether the file type is supported
     """
     file_extension = Path(filename).suffix.lstrip('.').lower()
     return file_extension in APP_CONFIG["supported_extensions"]
 
 def generate_output_filename(input_filename: str, add_timestamp: bool = False) -> str:
     """
-    生成输出文件名
+    Generate output filename
     
     Args:
-        input_filename: 输入文件名
-        add_timestamp: 是否添加时间戳
+        input_filename: Input filename
+        add_timestamp: Whether to add timestamp
         
     Returns:
-        输出文件名
+        Output filename
     """
     base_name = Path(input_filename).stem
     
@@ -229,13 +229,13 @@ def generate_output_filename(input_filename: str, add_timestamp: bool = False) -
 
 def format_duration(seconds: float) -> str:
     """
-    格式化时间持续时间
+    Format time duration
     
     Args:
-        seconds: 秒数
+        seconds: Number of seconds
         
     Returns:
-        格式化的时间字符串
+        Formatted time string
     """
     if seconds < 1:
         return f"{seconds*1000:.0f}ms"
@@ -252,25 +252,25 @@ def format_duration(seconds: float) -> str:
 
 def sanitize_filename(filename: str) -> str:
     """
-    清理文件名，移除不安全字符
+    Sanitize filename by removing unsafe characters
     
     Args:
-        filename: 原始文件名
+        filename: Original filename
         
     Returns:
-        清理后的文件名
+        Sanitized filename
     """
-    # 移除或替换不安全字符
+    # Remove or replace unsafe characters
     unsafe_chars = '<>:"/\\|?*'
     safe_filename = filename
     
     for char in unsafe_chars:
         safe_filename = safe_filename.replace(char, '_')
     
-    # 移除多余的空格和点
+    # Remove extra spaces and dots
     safe_filename = safe_filename.strip(' .')
     
-    # 确保文件名不为空
+    # Ensure filename is not empty
     if not safe_filename:
         safe_filename = "untitled"
     
@@ -278,25 +278,25 @@ def sanitize_filename(filename: str) -> str:
 
 def create_markdown_preview(content: str, max_length: int = 1000) -> str:
     """
-    创建 Markdown 内容的预览
+    Create preview of Markdown content
     
     Args:
-        content: Markdown 内容
-        max_length: 最大预览长度
+        content: Markdown content
+        max_length: Maximum preview length
         
     Returns:
-        预览内容
+        Preview content
     """
     if len(content) <= max_length:
         return content
     
-    # 尝试在合适的位置截断（避免在单词中间截断）
+    # Try to truncate at appropriate position (avoid breaking words)
     truncated = content[:max_length]
     last_space = truncated.rfind(' ')
     last_newline = truncated.rfind('\n')
     
     cut_point = max(last_space, last_newline)
-    if cut_point > max_length * 0.8:  # 如果截断点不太远
+    if cut_point > max_length * 0.8:  # If cut point is not too far
         truncated = content[:cut_point]
     
-    return truncated + "\n\n... (内容过长，已截断)" 
+    return truncated + "\n\n... (Content too long, truncated)" 
