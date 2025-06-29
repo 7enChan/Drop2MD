@@ -4,9 +4,7 @@ First off, thank you for considering contributing to Drop2MD! It's people like y
 
 ## 🤖 An AI-Generated Project
 
-This project was bootstrapped and developed entirely by an AI assistant (Google's Gemini). It serves as an experiment in AI-driven software development. Contributions are welcome, not only to improve the tool but also to explore the boundaries of AI-human collaboration in coding.
-
-When you contribute, you are participating in this exciting experiment. Please be mindful that the initial code was AI-generated, and your human insights are invaluable for refining it.
+This project was bootstrapped and developed entirely by an AI. Please be mindful that the initial code was AI-generated, and your human insights are invaluable for refining it.
 
 ## How Can I Contribute?
 
