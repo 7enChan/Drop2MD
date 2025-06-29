@@ -26,21 +26,32 @@ A modern, minimalist web interface for file conversion built on Microsoft's Mark
 
 ## ⚙️ Setup & Installation
 
-This project uses `uv` for fast package management. To get started, you just need to run the setup script.
+Below are two common ways to prepare a local environment. Pick the one you prefer.
 
-1.  **Make the setup script executable** (only required once):
-    ```bash
-    chmod +x setup_project.sh
-    ```
+### Option A — Use uv (fast & recommended)
 
-2.  **Run the setup script**:
-    This will create the virtual environment (`.venv`) and install all dependencies.
-    ```bash
-    ./setup_project.sh
-    ```
-    *Note: The script will guide you to install `uv` if it's not found on your system.*
+```bash
+# 1. Create and activate a virtual environment
+uv venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
 
-After the setup is complete, you can start the application.
+# 2. Install all dependencies (runtime + dev tools)
+uv pip install -e ".[dev]"
+```
+
+### Option B — Pure Python & pip (works everywhere)
+
+```bash
+# 1. Create and activate a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+
+# 2. Install dependencies
+pip install -e .                 # runtime only
+pip install -e ".[dev]"          # dev tools (optional)
+```
+
+Once the environment is ready you can launch the app as described below.
 
 ## 🚀 Quick Start
 
