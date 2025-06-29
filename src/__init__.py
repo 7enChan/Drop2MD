@@ -1,5 +1,5 @@
 """
-2MD Package
+Drop2MD Package
 """
 
 __version__ = "1.0.0"

@@ -1,4 +1,4 @@
-# MarkItDown WebUI Deployment Guide
+# Drop2MD Deployment Guide
 
 ## 🚀 Quick Deployment Options
 
@@ -59,10 +59,10 @@
 1. **Local Build and Run**
    ```bash
    # Build image
-   docker build -t markitdown-webui .
+   docker build -t drop2md .
    
    # Run container
-   docker run -p 8501:8501 markitdown-webui
+   docker run -p 8501:8501 drop2md
    ```
 
 2. **Use Docker Compose**
@@ -85,7 +85,7 @@
    ```bash
    # Clone project
    git clone <your-repo>
-   cd markitdown-webui
+   cd Drop2MD
    
    # Install uv
    curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -102,14 +102,14 @@
    # Create service file
    sudo tee /etc/systemd/system/markitdown.service > /dev/null <<EOF
    [Unit]
-   Description=MarkItDown WebUI
+   Description=Drop2MD
    After=network.target
    
    [Service]
    Type=simple
    User=your-username
-   WorkingDirectory=/path/to/markitdown-webui
-   ExecStart=/path/to/markitdown-webui/.venv/bin/streamlit run src/app.py --server.port 8501 --server.address 0.0.0.0
+   WorkingDirectory=/path/to/Drop2MD
+   ExecStart=/path/to/Drop2MD/.venv/bin/streamlit run src/app.py --server.port 8501 --server.address 0.0.0.0
    Restart=always
    
    [Install]

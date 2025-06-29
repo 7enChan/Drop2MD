@@ -1,4 +1,4 @@
-# MarkItDown WebUI
+# Drop2MD
 
 A modern, minimalist web interface for file conversion built on Microsoft's MarkItDown.
 
@@ -54,7 +54,7 @@ deactivate
 ## 📁 Project Structure
 
 ```
-markitdown-webui/
+Drop2MD/
 ├── .venv/              # Virtual environment
 ├── src/               # Source code
 │   ├── app.py        # Main application

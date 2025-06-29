@@ -8,7 +8,7 @@ PROJECT_ROOT = Path(__file__).parent.parent
 
 # Application configuration
 APP_CONFIG = {
-    "title": "MarkItDown WebUI",
+    "title": "Drop2MD",
     "version": "1.0.0",
     "description": "A modern, minimalist web interface for file conversion built on MarkItDown",
     
@@ -47,7 +47,7 @@ APP_CONFIG = {
     
     # UI configuration
     "ui_config": {
-        "page_title": "MarkItDown WebUI",
+        "page_title": "Drop2MD",
         "page_icon": "📝",
         "layout": "wide",
         "initial_sidebar_state": "expanded"

@@ -1,12 +1,12 @@
 #!/bin/bash
-# MarkItDown WebUI project setup script (using uv)
+# Drop2MD project setup script (using uv)
 
 set -e  # Exit immediately on error
 
-PROJECT_NAME="markitdown-webui"
+PROJECT_NAME="Drop2MD"
 PYTHON_VERSION="3.12"
 
-echo "🚀 Creating MarkItDown WebUI project with uv..."
+echo "🚀 Creating Drop2MD project with uv..."
 
 # Check if uv is installed
 if ! command -v uv &> /dev/null; then
@@ -28,7 +28,7 @@ mkdir -p {src,tests,docs,data/{input,output,temp}}
 echo "⚙️ Creating project configuration..."
 cat > pyproject.toml << 'EOF'
 [project]
-name = "markitdown-webui"
+name = "drop2md"
 version = "1.0.0"
 description = "A modern WebUI for MarkItDown file conversion"
 authors = [
@@ -139,7 +139,7 @@ uv pip install -e ".[dev]"
 cat > run.sh << 'EOF'
 #!/bin/bash
 # Quick start script
-echo "🚀 Starting MarkItDown WebUI..."
+echo "🚀 Starting Drop2MD..."
 source .venv/bin/activate
 streamlit run src/app.py --server.port 8501 --server.address localhost
 EOF

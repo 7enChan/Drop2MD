@@ -1,5 +1,5 @@
 """
-MarkItDown WebUI
+Drop2MD
 A simple, efficient file conversion tool
 """
 
@@ -14,7 +14,7 @@ from config import APP_CONFIG
 
 # Page configuration
 st.set_page_config(
-    page_title="MarkItDown Converter",
+    page_title="Drop2MD",
     page_icon="📝",
     layout="centered",
     initial_sidebar_state="collapsed"
@@ -138,7 +138,7 @@ st.markdown("""
 
 def main():
     # Simple title
-    st.markdown('<h1 class="main-title">📝 MarkItDown</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-title">📝 Drop2MD</h1>', unsafe_allow_html=True)
     st.markdown('<p class="subtitle">Convert any file to Markdown format</p>', unsafe_allow_html=True)
     
     # File upload area

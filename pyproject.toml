@@ -1,5 +1,5 @@
 [project]
-name = "markitdown-webui"
+name = "drop2md"
 version = "1.0.0"
 description = "A modern, minimalist web interface for file conversion built on Microsoft's MarkItDown"
 authors = [

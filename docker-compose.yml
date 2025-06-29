@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  markitdown-webui:
+  Drop2MD:
     build: .
-    container_name: markitdown-webui
+    container_name: Drop2MD
     ports:
       - "8501:8501"
     volumes:
