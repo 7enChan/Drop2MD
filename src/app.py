@@ -31,8 +31,28 @@ st.markdown("""
     /* Simplify main container */
     .main .block-container {
         padding-top: 2rem;
-        padding-bottom: 2rem;
+        padding-bottom: 5rem;
         max-width: 800px;
+    }
+    
+    /* Custom footer style */
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        color: #888;
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+        border-top: 1px solid #eaeaea;
+        z-index: 100;
+    }
+    
+    .footer a {
+        color: #555;
+        text-decoration: none;
     }
     
     /* Title styles */
@@ -139,7 +159,7 @@ st.markdown("""
 def main():
     # Simple title
     st.markdown('<h1 class="main-title">📝 Drop2MD</h1>', unsafe_allow_html=True)
-    st.markdown('<p class="subtitle">Convert any file to Markdown format</p>', unsafe_allow_html=True)
+    st.markdown('<p class="subtitle">Convert most common file formats to Markdown</p>', unsafe_allow_html=True)
     
     # File upload area
     col1, col2, col3 = st.columns([0.5, 4, 0.5])
@@ -157,6 +177,17 @@ def main():
         # File info and conversion
         if uploaded_file is not None:
             show_file_conversion(uploaded_file)
+            
+    # Footer
+    st.markdown(
+        """
+        <div class="footer">
+            Powered by <a href="https://streamlit.io" target="_blank">Streamlit</a>
+            & <a href="https://github.com/microsoft/markitdown" target="_blank">MarkItDown</a>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 def show_file_conversion(uploaded_file):
     """Display file information and conversion functionality"""
