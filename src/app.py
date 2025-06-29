@@ -159,7 +159,7 @@ st.markdown("""
 def main():
     # Simple title
     st.markdown('<h1 class="main-title">📝 Drop2MD</h1>', unsafe_allow_html=True)
-    st.markdown('<p class="subtitle">Convert most common file formats to Markdown</p>', unsafe_allow_html=True)
+    st.markdown('<p class="subtitle">Convert almost all file formats to Markdown</p>', unsafe_allow_html=True)
     
     # File upload area
     col1, col2, col3 = st.columns([0.5, 4, 0.5])
