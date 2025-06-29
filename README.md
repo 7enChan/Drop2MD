@@ -24,6 +24,24 @@ A modern, minimalist web interface for file conversion built on Microsoft's Mark
 - 📚 **Archives**: ZIP, EPUB
 - 📝 **Text**: TXT, RTF, Markdown
 
+## ⚙️ Setup & Installation
+
+This project uses `uv` for fast package management. To get started, you just need to run the setup script.
+
+1.  **Make the setup script executable** (only required once):
+    ```bash
+    chmod +x setup_project.sh
+    ```
+
+2.  **Run the setup script**:
+    This will create the virtual environment (`.venv`) and install all dependencies.
+    ```bash
+    ./setup_project.sh
+    ```
+    *Note: The script will guide you to install `uv` if it's not found on your system.*
+
+After the setup is complete, you can start the application.
+
 ## 🚀 Quick Start
 
 ```bash
